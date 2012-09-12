@@ -1,4 +1,4 @@
-(load-file "mote-mode.el")
+(require 'mote-mode)
 
 (defgroup mote-html-faces nil
   "Faces used in Mote HTML mode."
