@@ -33,20 +33,34 @@
   "Face for assignments in Mote."
   :group 'mote-faces)
 
+(defun mote-highlight-ruby (limit)
+  "Highlight a Ruby expression."
+  (when (re-search-forward "^[ \t]*%\\(.*\\)$" limit t)
+    (mote-fontify-region-as-ruby (match-beginning 1) (match-end 1))))
+
+(defun mote-highlight-assignment (limit)
+  "Highlight a Ruby expression inside an assignment."
+  (when (re-search-forward "{{\\(.*\\)}}" limit t)
+    (mote-fontify-region-as-ruby (match-beginning 1) (match-end 1))))
+
+(defun mote-fontify-region-as-ruby (beg end)
+  "Use Ruby's font-lock variables to fontify region between BEG and END."
+  (save-excursion
+    (save-match-data
+      (let ((font-lock-keywords ruby-font-lock-keywords)
+            (font-lock-syntax-table ruby-font-lock-syntax-table)
+            font-lock-keywords-only
+            font-lock-extend-region-functions
+            font-lock-keywords-case-fold-search)
+        (font-lock-fontify-region beg end)))))
+
 (defvar mote-font-lock-keywords
-  '(("{{\\(.+\\)}}"
-     (0 'mote-special-chars-face t)
-     (1 'mote-assignment-face t))
-
-    ("^\s*\\(%\\)\\(.*\\)"
+  '(("^[ \t]*%" 0 'mote-special-chars-face t)
+    ("\\({{\\).*\\(}}\\)"
      (1 'mote-special-chars-face t)
-     (2 'mote-ruby-code-face t)
-     )
-
-    ("^\s*\\(%\\)\\(.*\\)\\(#.*\\)"
-     (1 'mote-special-chars-face t)
-     (2 'mote-ruby-code-face t)
-     (3 'mote-comment-face t)))
+     (2 'mote-special-chars-face t))
+    (mote-highlight-assignment 1 font-lock-preprocessor-face)
+    (mote-highlight-ruby 1 font-lock-preprocessor-face))
   "Additional syntax highlighting for Mote files.")
 
 (define-minor-mode mote-mode
