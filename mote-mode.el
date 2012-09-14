@@ -6,6 +6,7 @@
 ;;
 
 (require 'font-lock)
+(require 'ruby-mode)
 
 (defgroup mote nil
   "Mote mode customization group")
