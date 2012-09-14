@@ -2,7 +2,7 @@
 ;;
 ;; See https://github.com/soveran/mote
 ;;
-;; Copyright 2012: Leandro LÃ³pez (inkel)
+;; Copyright 2012: Leandro López (inkel)
 ;;
 
 (require 'font-lock)
