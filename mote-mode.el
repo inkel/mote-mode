@@ -22,9 +22,7 @@
   (let ((beg (search-forward "{{" limit t))
         (end (search-forward "}}" limit t)))
     (when (and beg end)
-      (set-text-properties (- beg 2) beg '(face font-lock-preprocessor-face))
-      (mote-fontify-region-as-ruby beg end)
-      (set-text-properties (- end 2) end '(face font-lock-preprocessor-face)))))
+      (mote-fontify-region-as-ruby beg (- end 2)))))
 
 (defun mote-fontify-region-as-ruby (beg end)
   "Use Ruby's font-lock variables to fontify region between BEG and END."
@@ -38,7 +36,9 @@
         (font-lock-fontify-region beg end)))))
 
 (defvar mote-font-lock-keywords
-  '(mote-highlight-assignment
+  '(("{{" . font-lock-preprocessor-face)
+    ("}}" . font-lock-preprocessor-face)
+    mote-highlight-assignment
     mote-highlight-ruby)
   "Additional syntax highlighting for Mote files.")
 
