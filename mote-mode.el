@@ -1,10 +1,17 @@
-;; mote-mode: a minor mode for editing Mote templates
+;;; mote-mode.el --- Mote minor mode
 ;;
-;; See https://github.com/soveran/mote
+;; Copyright 2012 Leandro López (inkel)
 ;;
-;; Copyright 2012: Leandro López (inkel)
+;; Author: Leandro López (inkel) <inkel.ar@gmail.com>
+;; URL: http://inkel.github.com/mote-mode/
+;; Version: 1.0.0
+;; Package-Requires: ((ruby-mote "1.0"))
 ;;
-
+;; Mote is the Minimum Operational Template, a very simple and fast
+;; template engine for Ruby. For more information about mote go to
+;; https://github.com/soveran/mote
+;;
+;;; Code:
 (require 'font-lock)
 (require 'ruby-mode)
 
@@ -53,3 +60,5 @@
   (font-lock-fontify-buffer))
 
 (provide 'mote-mode)
+
+;;; mote-mode.el ends here
