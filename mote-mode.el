@@ -5,7 +5,7 @@
 ;; Author: Leandro López (inkel) <inkel.ar@gmail.com>
 ;; URL: http://inkel.github.com/mote-mode/
 ;; Version: 1.0.0
-;; Package-Requires: ((ruby-mote "1.0"))
+;; Package-Requires: ((ruby-mode "1.1"))
 ;;
 ;; Mote is the Minimum Operational Template, a very simple and fast
 ;; template engine for Ruby. For more information about mote go to
