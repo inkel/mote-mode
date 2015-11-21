@@ -16,7 +16,8 @@
 (require 'ruby-mode)
 
 (defgroup mote nil
-  "Mote mode customization group")
+  "Mote mode customization group"
+  :group 'ruby)
 
 (defun mote-highlight-ruby (limit)
   "Highlight a Ruby expression."
